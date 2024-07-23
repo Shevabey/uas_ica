@@ -24,7 +24,7 @@ const Customer = db.define(
       allowNull: true,
     },
     kekurangan_pembayaran: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
   },

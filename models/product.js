@@ -27,7 +27,7 @@ const Product = db.define(
       },
     },
     harga: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.INTEGER,
       allowNull: false,
       validate: {
         notEmpty: true,

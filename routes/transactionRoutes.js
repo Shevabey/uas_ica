@@ -1,9 +1,9 @@
 import express from "express";
 import { createTransaction } from "../controllers/transactionController.js";
-import authenticateToken from "../middlewares/auth.js";
+import authenticateToken from "../middleware/authUser.js";
 
 const router = express.Router();
 
-router.post("/transactions", authenticateToken, createTransaction);
+router.post("/", authenticateToken, createTransaction);
 
 export default router;

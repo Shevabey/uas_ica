@@ -1,7 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
 import User from "./User.js";
-import Product from "./Product.js";
+import Product from "./product.js";
 import Customer from "./Customer.js";
 
 const { DataTypes } = Sequelize;
@@ -27,6 +27,15 @@ const Transaction = db.define(
       validate: {
         notEmpty: true,
         isIn: [["lunas", "cicilan"]],
+      },
+    },
+
+    jumlah_beli: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        min: 1,
       },
     },
     id_staf: {
