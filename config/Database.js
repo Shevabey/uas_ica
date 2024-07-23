@@ -1,5 +1,3 @@
-// KONFIGURASI DATABASE DENGAN MYSQL
-
 import { Sequelize } from "sequelize";
 
 import dotenv from "dotenv";

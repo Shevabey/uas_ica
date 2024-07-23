@@ -1,10 +1,9 @@
 import express from "express";
-import { getJobs, getJobsById } from "../controllers/applicantController.js";
-import { verifyToken, applicantOnly } from "../middleware/authUser.js";
+import { createTransaction } from "../controllers/transactionController.js";
+import authenticateToken from "../middlewares/auth.js";
 
 const router = express.Router();
 
-router.get("/vacancies", verifyToken, applicantOnly, getJobs);
-router.get("/vacancies/:id", verifyToken, applicantOnly, getJobsById);
+router.post("/transactions", authenticateToken, createTransaction);
 
 export default router;
