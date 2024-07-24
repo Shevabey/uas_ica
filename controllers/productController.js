@@ -42,12 +42,13 @@ export const getProductById = async (req, res) => {
 
 // Add new product
 export const addProduct = async (req, res) => {
-  const { nama_produk, stok, harga } = req.body;
+  const { nama_produk, stok, harga, lokasi } = req.body;
   try {
     const newProduct = await Product.create({
       nama_produk,
       stok,
       harga,
+      lokasi,
     });
     res.status(201).json(newProduct);
   } catch (error) {
@@ -58,7 +59,7 @@ export const addProduct = async (req, res) => {
 // Update product
 export const updateProduct = async (req, res) => {
   const { id_produk } = req.params;
-  const { nama_produk, stok, harga } = req.body;
+  const { nama_produk, stok, harga, lokasi } = req.body;
   try {
     const product = await Product.findByPk(id_produk);
     if (!product) return res.status(404).json({ message: "Product not found" });
@@ -66,6 +67,7 @@ export const updateProduct = async (req, res) => {
     product.nama_produk = nama_produk;
     product.stok = stok;
     product.harga = harga;
+    product.lokasi = lokasi;
 
     await product.save();
     res.json(product);

@@ -33,6 +33,13 @@ const Product = db.define(
         notEmpty: true,
       },
     },
+    lokasi: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      },
+    },
   },
   {
     freezeTableName: true,
