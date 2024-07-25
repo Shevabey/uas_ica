@@ -1,6 +1,6 @@
-import Transaction from "../models/Transaction.js";
+import Transaction from "../models/transaction.js";
 import Product from "../models/product.js";
-import Customer from "../models/Customer.js";
+import Customer from "../models/customer.js";
 
 // Create a new transaction
 export const createTransaction = async (req, res) => {

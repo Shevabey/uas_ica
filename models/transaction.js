@@ -1,8 +1,8 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
-import User from "./User.js";
+import User from "./user.js";
 import Product from "./product.js";
-import Customer from "./Customer.js";
+import Customer from "./customer.js";
 
 const { DataTypes } = Sequelize;
 
