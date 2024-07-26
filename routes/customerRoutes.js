@@ -6,15 +6,30 @@ import {
   updateCustomer,
   deleteCustomer,
 } from "../controllers/customerController.js";
-import authenticateToken from "../middleware/authUser.js";
+import { authenticateToken, authorizeRole } from "../middleware/authUser.js";
 
 const router = express.Router();
 
 // Protected routes
-router.post("/add", authenticateToken, addCustomer);
-router.get("/", authenticateToken, getCustomers);
-router.get("/:id_pelanggan", authenticateToken, getCustomerById);
-router.patch("/:id_pelanggan", authenticateToken, updateCustomer);
-router.delete("/:id_pelanggan", authenticateToken, deleteCustomer);
+router.post("/add", authenticateToken, authorizeRole(["admin"]), addCustomer);
+router.get("/", authenticateToken, authorizeRole(["admin"]), getCustomers);
+router.get(
+  "/:id_pelanggan",
+  authenticateToken,
+  authorizeRole(["admin"]),
+  getCustomerById
+);
+router.patch(
+  "/:id_pelanggan",
+  authenticateToken,
+  authorizeRole(["admin"]),
+  updateCustomer
+);
+router.delete(
+  "/:id_pelanggan",
+  authenticateToken,
+  authorizeRole(["admin"]),
+  deleteCustomer
+);
 
 export default router;

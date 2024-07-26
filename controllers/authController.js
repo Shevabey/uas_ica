@@ -7,7 +7,12 @@ dotenv.config();
 
 // Register user
 export const registerUser = async (req, res) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, role } = req.body;
+
+  // Pastikan hanya admin yang bisa mendaftarkan pengguna
+  if (req.user.role !== "admin") {
+    return res.status(403).json({ message: "Access denied" });
+  }
 
   try {
     // Hash password
@@ -18,6 +23,7 @@ export const registerUser = async (req, res) => {
       username,
       email,
       password: hashedPassword,
+      role,
     });
 
     res.status(201).json({ message: "User registered successfully", user });
@@ -26,7 +32,7 @@ export const registerUser = async (req, res) => {
   }
 };
 
-// Register user
+// Login user
 export const loginUser = async (req, res) => {
   const { username, password } = req.body;
 
@@ -40,7 +46,7 @@ export const loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid username or password" });
 
     const accessToken = jwt.sign(
-      { id_staf: user.id_staf, username: user.username },
+      { id_staf: user.id_staf, username: user.username, role: user.role },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );

@@ -16,4 +16,13 @@ const authenticateToken = (req, res, next) => {
   });
 };
 
-export default authenticateToken;
+const authorizeRole = (roles) => {
+  return (req, res, next) => {
+    if (!roles.includes(req.user.role)) {
+      return res.sendStatus(403); // Forbidden jika pengguna tidak memiliki peran yang sesuai
+    }
+    next();
+  };
+};
+
+export { authenticateToken, authorizeRole };
