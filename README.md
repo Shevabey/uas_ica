@@ -27,3 +27,8 @@ Port development
 http://localhost:4001/
 
 ```
+Port Production
+```bash
+https://uasica-production.up.railway.app/
+
+```
